@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>إنشاء حساب جديد</title>
+    <link rel="stylesheet" href="registerStyle.css">
+    <!-- لو هتستخدمي أيقونات Font Awesome للكاب والـ users -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- القسم الأيسر: الفورم -->
+    <div class="form-section">
+        <h2>إنشاء حساب جديد</h2>
+        <p class="desc">يُرجى إدخال بياناتك الأكاديمية لاستخدام النظام</p>
+
+       <div class="form-group">
+    <label>الاسم الكامل</label>
+    <input type="text" placeholder="أدخل اسمك الرباعي كما في الهوية">
+</div>
+
+<div class="row">
+    <div class="col">
+        <label>اللقب الأكاديمي</label>
+        <select>
+            <option>اختر اللقب...</option>
+            <option>دكتور</option>
+            <option>أستاذ</option>
+            <option>طالب</option>
+        </select>
+    </div>
+    <div class="col">
+        <label>البريد الجامعي الرسمي</label>
+        <input type="email" placeholder="example@univ.edu.eg">
+    </div>
+</div>
+
+<div class="form-group">
+    <label>كلمة المرور</label>
+    <input type="password" placeholder="********">
+</div>
+
+     <div class="note-box">
+    <div class="note-icon">!</div>
+    <div class="note-text">
+        <span class="note-title">ملاحظة:</span>
+        سيتم مراجعة طلبك من قبل إدارة الكنترول،
+        سيبقى حسابك في حالة 
+        <span class="note-status">"في انتظار الموافقة"</span>
+        حتى يتم تفعيله رسميًا من قبل الإدارة المركزية.
+    </div>
+</div>
+
+        <button>إنشاء حساب ←</button>
+
+        <p class="login-link">لديك حساب بالفعل؟ <a href="logiin2.html">تسجيل الدخول</a></p>
+
+        <!-- الفوتر الأبيض -->
+        <div class="form-footer-bottom">
+            <a href="#">سياسة الخصوصية</a> . 
+            <a href="#">الدعم الفني</a> . 
+            <span>© 2026 نظام كنترول الجامعة</span>
+        </div>
+    </div>
+
+    <!-- القسم الأيمن: المربع الأزرق -->
+    <div class="info-section">
+        <div class="header-box">
+            <i class="fa fa-graduation-cap green-cap"></i>
+            <h1>كنترول الجامعة</h1>
+        </div>
+        <h3>الدقة في الإدارة، الأمان في النتائج.</h3>
+        <p class="system-desc">نظام كنترول الجامعة المتكامل لإدارة الامتحانات والنتائج الأكاديمية بمعايير عالمية وخصوصية تامة.</p>
+
+        <div class="faculty-box">
+            <div class="faculty-header">
+                <i class="fa fa-users" style="color: rgb(109, 237, 109);"></i>
+                <h2>بوابة أعضاء هيئة التدريس</h2>
+            </div>
+            <p>انضم الآن لأكثر من 500 عضو هيئة تدريس مسجل</p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

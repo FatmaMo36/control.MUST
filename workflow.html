@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>سير عمل المادة</title>
+
+    <!-- Cairo Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="nav-links">
+        <a href="main.html">الرئيسية</a>
+        <a class="active" href="#">سير العمل</a>
+        <a href="index.html">ملف الأوراق</a>
+        <a href="#">الأرشيف</a>
+        <a href="profile.html">الإعدادات</a>
+    </div>
+    <div class="user">
+        <i class="fa-solid fa-user"></i>
+        أ.د محمد القحطاني
+    </div>
+</div>
+
+<!-- Header Actions -->
+<section class="header-actions">
+    <button class="btn primary">
+        <i class="fa-solid fa-lock"></i>
+        قفل المادة وأرشفتها
+    </button>
+
+    <button class="btn outline">
+        <i class="fa-solid fa-paper-plane"></i>
+        إرسال للتسليم
+    </button>
+
+    <div class="course-select">
+        <i class="fa-solid fa-book-open"></i>
+        هندسة البرمجيات المتقدمة
+    </div>
+</section>
+
+<!-- Info Cards -->
+<section class="info-cards">
+    <div class="info-card">
+        <i class="fa-solid fa-users"></i>
+        عدد الطلاب / القاعة<br>
+        <strong>142 طالب — B4 قاعة</strong>
+    </div>
+
+    <div class="info-card">
+        <i class="fa-solid fa-hashtag"></i>
+        كود المادة<br>
+        <strong>SWE - 402 - CS</strong>
+    </div>
+
+    <div class="info-card">
+        <i class="fa-solid fa-book"></i>
+        اسم المادة<br>
+        <strong>هندسة البرمجيات المتقدمة</strong>
+    </div>
+</section>
+
+<!-- Table -->
+<section class="table-section">
+    <h2><i class="fa-regular fa-file-lines"></i> دورة حياة ورقة الامتحان</h2>
+
+    <table>
+        <thead class="file-bar">
+            <tr>
+                <th>المرحلة</th>
+                <th>الحالة</th>
+                <th>التاريخ</th>
+                <th>المسؤول</th>
+                <th>ملاحظات</th>
+                <th>الإجراءات</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows -->
+            <tr>
+                <td>كود المقرر</td>
+                <td><span class="done"><i class="fa-solid fa-circle-check"></i> مكتمل</span></td>
+                <td>16 أكتوبر 2023</td>
+                <td><i class="fa-solid fa-user-tie"></i> أ.د محمد القحطاني</td>
+                <td>تمت المراجعة والاعتماد</td>
+                <td><button class="edit"><i class="fa-solid fa-pen"></i> تعديل</button></td>
+            </tr>
+
+            <tr>
+                <td>اسم أستاذ المقرر</td>
+                <td><span class="done"><i class="fa-solid fa-circle-check"></i> مكتمل</span></td>
+                <td>16 أكتوبر 2023</td>
+                <td><i class="fa-solid fa-user-tie"></i> أ.د محمد القحطاني</td>
+                <td>تمت المراجعة والاعتماد</td>
+                <td><button class="edit"><i class="fa-solid fa-pen"></i> تعديل</button></td>
+            </tr>
+
+            <tr>
+                <td>عدد الطلاب</td>
+                <td><span class="done"><i class="fa-solid fa-circle-check"></i> مكتمل</span></td>
+                <td>16 أكتوبر 2023</td>
+                <td><i class="fa-solid fa-user-tie"></i> أ.د محمد القحطاني</td>
+                <td>تمت المراجعة والاعتماد</td>
+                <td><button class="edit"><i class="fa-solid fa-pen"></i> تعديل</button></td>
+            </tr>
+
+            <tr>
+                <td>تسليم الكراسات لأستاذ المقرر</td>
+                <td><span class="done"><i class="fa-solid fa-circle-check"></i> مكتمل</span></td>
+                <td>16 أكتوبر 2023</td>
+                <td><i class="fa-solid fa-user-tie"></i> أ.د محمد القحطاني</td>
+                <td>تمت المراجعة والاعتماد</td>
+                <td><button class="edit"><i class="fa-solid fa-pen"></i> تعديل</button></td>
+            </tr>
+
+            <tr>
+                <td>تاريخ تسليم الكراسات لأستاذ المقرر</td>
+                <td><span class="progress"><i class="fa-solid fa-clock"></i> قيد التنفيذ</span></td>
+                <td>—</td>
+                <td><i class="fa-solid fa-user-tie"></i> أ.د محمد القحطاني</td>
+                <td>إضافة ملاحظة…</td>
+                <td><button class="save"><i class="fa-solid fa-floppy-disk"></i> حفظ</button></td>
+            </tr>
+
+            <tr>
+                <td>تصحيح واستلام الكراسات من أستاذ المقرر</td>
+                <td><span class="pending"><i class="fa-solid fa-hourglass-half"></i> معلق</span></td>
+                <td>—</td>
+                <td>لم يحدد بعد</td>
+                <td>إضافة</td>
+                <td><button class="lock"><i class="fa-solid fa-lock"></i> مؤمن</button></td>
+            </tr>
+
+            <tr>
+                <td>تاريخ استلام الكراسات من أستاذ المقرر</td>
+                <td><span class="pending"><i class="fa-solid fa-hourglass-half"></i> معلق</span></td>
+                <td>—</td>
+                <td>لم يحدد بعد</td>
+                <td>إضافة</td>
+                <td><button class="lock"><i class="fa-solid fa-lock"></i> مؤمن</button></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- Footer مطابق للصورة -->
+<footer>
+    <div class="footer-cols">
+        <div>
+            <h3>ABOUT UNIVERSITY</h3>
+            <p>About MUST</p>
+            <p>History</p>
+            <p>Accreditation And Partnership</p>
+            <p>Why MUST</p>
+            <p>Values & Principles</p>
+            <p>Contact Us</p>
+            <p>Privacy Policy</p>
+        </div>
+
+        <div>
+            <h3>MUST BUZZ</h3>
+            <p>MUST Events</p>
+            <p>MUST News</p>
+            <p>Blog</p>
+            <p>Announcement</p>
+        </div>
+
+        <div>
+            <h3>QUICK LINKS</h3>
+            <p>The University</p>
+            <p>Academics</p>
+            <p>Life At MUST</p>
+            <p>Research & Centres</p>
+            <p>Maps & Directions</p>
+            <p>FAQs</p>
+        </div>
+
+        <div>
+            <h3>CONTACT INFO</h3>
+            <p><strong>HOTLINE</strong> 16878</p>
+            <p><strong>EMAIL</strong> Info@Must.Edu.Eg</p>
+            <p><strong>ADDRESS</strong> Al Motamayez District – 6th of October, Egypt</p>
+        </div>
+    </div>
+
+    <div class="copyright">
+        COPYRIGHT ALL RIGHT RESERVED © MUST UNIVERSITY 2026
+    </div>
+</footer>
+
+</body>
+</html>

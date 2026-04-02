@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أرشيف المواد المكتملة - كنترول الجامعة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fc;
+            color: #121c33;
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* القائمة الجانبية (Sidebar) */
+        .sidebar {
+            background-color: #202c59;
+            color: white;
+            width: 260px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-box {
+            width: 60px;
+            height: 60px;
+            background-color: #0c152e;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo-box i {
+            font-size: 2rem;
+            color: #ffffff;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .sidebar-header p {
+            font-size: 0.8rem;
+            color: #8fa0c9;
+            margin-top: 5px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            flex-grow: 1;
+            margin-top: 20px;
+            padding: 0;
+        }
+
+        .sidebar-menu li {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-menu li a {
+            padding: 15px 25px;
+            border-radius: 10px 0 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            color: #aebce0;
+            text-decoration: none;
+        }
+
+        .sidebar-menu li a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+
+        .sidebar-menu li.active a {
+            background-color: #7affaa;
+            color: #202c59;
+            font-weight: 700;
+        }
+
+        .user-profile {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: rgba(0, 0, 0, 0.15);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #8aff9e;
+            color: #202c59;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* --- المحتوى الرئيسي --- */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* الشريط العلوي */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            z-index: 10;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .topbar-title {
+            color: #202c59;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            background-color: #f0f2f5;
+            border: none;
+            padding: 10px 40px 10px 15px;
+            border-radius: 8px;
+            width: 300px;
+            outline: none;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        .topbar-icons {
+            display: flex;
+            gap: 15px;
+            color: #202c59;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* منطقة الأرشيف */
+        .archive-container {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ترويسة الصفحة */
+        .page-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .page-header-info h1 {
+            color: #0b2253;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        .page-header-info p {
+            color: #6b7280;
+            font-size: 15px;
+        }
+
+        .btn-print-full {
+            background-color: #1b2641;
+            color: #ffffff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-print-full:hover {
+            background-color: #2c3e66;
+        }
+
+        /* التبويبات (Tabs) */
+        .tabs-container {
+            display: flex;
+            background-color: #eef1f6;
+            border-radius: 12px;
+            padding: 5px;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 15px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #6b7280;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            background-color: #ffffff;
+            color: #0b2253;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* تخطيط المحتوى (الجدول والإحصائيات) */
+        .content-layout {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+        }
+
+        /* منطقة الجدول */
+        .table-section {
+            flex: 1;
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr 1fr 2fr;
+            padding: 20px;
+            background-color: #fafbfc;
+            border-bottom: 1px solid #e5e7eb;
+            font-weight: 700;
+            color: #6b7280;
+            font-size: 14px;
+            text-align: center;
+            align-items: center;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr 1fr 2fr;
+            padding: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            align-items: center;
+            text-align: center;
+            font-weight: 600;
+            color: #0b2253;
+            transition: 0.2s;
+        }
+
+        .table-row:hover {
+            background-color: #f8fafc;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        /* عناصر الجدول المخصصة */
+        .course-code {
+            color: #0b2253;
+            font-weight: 700;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            background-color: #e6fcf0;
+            color: #059669;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .actions-cell {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-report {
+            background-color: #6af196;
+            color: #1b2641;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .btn-report:hover {
+            background-color: #5be085;
+        }
+
+        .btn-icon {
+            background-color: #1b2641;
+            color: #ffffff;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .btn-icon:hover {
+            background-color: #2c3e66;
+        }
+
+        /* بطاقة الإحصائيات (يسار) */
+        .stats-card {
+            width: 250px;
+            background-color: #1b2641;
+            color: #ffffff;
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+
+        .stats-card i.fa-chart-pie {
+            color: #6af196;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .stats-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #6af196;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stats-number {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stats-desc {
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        /* تصميم أيقونة الخلفية الزخرفية للبطاقة */
+        .stats-bg-icon {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 120px;
+            color: rgba(255, 255, 255, 0.03);
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+ <aside class="sidebar">
+    <div>
+         <div class="sidebar-header">
+            <div class="logo-box">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z'/></svg>" alt="Logo" style="width: 35px;">
+            </div>
+            <h2>كنترول الجامعة</h2>
+            <p>لوحة الإدارة</p>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li><a href="#"><i class="fa-solid fa-border-all"></i> لوحة التحكم</a></li>
+            <li><a href="إدارة الأعضاء.html"><i class="fa-solid fa-users"></i> الأعضاء</a></li>
+            <li><a href="إدارة المواد الدراسية.html"><i class="fa-solid fa-book"></i> المواد الدراسية</a></li>
+            <li class="active"><a href="#"><i class="fa-solid fa-box-archive"></i> الأرشيف</a></li>
+            <li><a href="اعدادات النظام.html"><i class="fa-solid fa-gear"></i> الإعدادات</a></li>
+        </ul>
+    </div>
+
+    <div class="user-profile">
+        <div class="user-avatar"><i class="fa-regular fa-user"></i></div>
+        <div>
+            <div style="font-weight: 700;">أحمد المحمد</div>
+            <div style="font-size: 0.8rem; color: #aaa;">مدير النظام</div>
+        </div>
+    </div>
+</aside>
+
+    <main class="main-content">
+       <header class="topbar">
+            <div class="topbar-title">نظام كنترول الجامعة</div>
+            <div class="topbar-right">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" class="search-input" placeholder="بحث في النظام...">
+                </div>
+                <div class="topbar-icons">
+                    <i class="fa-regular fa-bell"></i>
+                    <i class="fa-regular fa-circle-user"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="archive-container">
+            
+            <div class="page-header-flex">
+                <div class="page-header-info">
+                    <h1>أرشيف المواد المكتملة</h1>
+                    <p>عرض وطباعة تقارير المواد التي تم إغلاقها بنجاح للعام الجامعي 2023-2024</p>
+                </div>
+                <button class="btn-print-full">
+                    <i class="fa-solid fa-print"></i> طباعة تقرير الفرقة الكامل
+                </button>
+            </div>
+
+            <div class="tabs-container">
+                <button class="tab-btn active">الفرقة الأولى</button>
+                <button class="tab-btn">الفرقة الثانية</button>
+                <button class="tab-btn">الفرقة الثالثة</button>
+                <button class="tab-btn">الفرقة الرابعة</button>
+            </div>
+
+            <div class="content-layout">
+                
+                <div class="table-section">
+                    <div class="table-header">
+                        <div>كود المادة</div>
+                        <div>اسم المادة</div>
+                        <div>الفصل الدراسي</div>
+                        <div>تاريخ الأرشفة</div>
+                        <div>الحالة</div>
+                        <div>الإجراءات</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="course-code">CS101</div>
+                        <div>مبادئ<br>هندسة البرمجيات</div>
+                        <div>الخريف<br>2023</div>
+                        <div>15 يناير<br>2024</div>
+                        <div><span class="status-badge"><i class="fa-solid fa-lock"></i> مكتملة</span></div>
+                        <div class="actions-cell">
+                            <button class="btn-report"><i class="fa-solid fa-chart-line"></i> تقرير الإحصاء</button>
+                            <button class="btn-icon"><i class="fa-solid fa-print"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="course-code">MATH201</div>
+                        <div>الرياضيات<br>المتقدمة</div>
+                        <div>الخريف<br>2023</div>
+                        <div>20 يناير<br>2024</div>
+                        <div><span class="status-badge"><i class="fa-solid fa-lock"></i> مكتملة</span></div>
+                        <div class="actions-cell">
+                            <button class="btn-report"><i class="fa-solid fa-chart-line"></i> تقرير الإحصاء</button>
+                            <button class="btn-icon"><i class="fa-solid fa-print"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="course-code">PHY102</div>
+                        <div>الفيزياء<br>الكلاسيكية</div>
+                        <div>الخريف<br>2023</div>
+                        <div>22 يناير<br>2024</div>
+                        <div><span class="status-badge"><i class="fa-solid fa-lock"></i> مكتملة</span></div>
+                        <div class="actions-cell">
+                            <button class="btn-report"><i class="fa-solid fa-chart-line"></i> تقرير الإحصاء</button>
+                            <button class="btn-icon"><i class="fa-solid fa-print"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="course-code">ENGL101</div>
+                        <div>اللغة<br>الإنجليزية الأكاديمية</div>
+                        <div>الخريف<br>2023</div>
+                        <div>02 فبراير<br>2024</div>
+                        <div><span class="status-badge"><i class="fa-solid fa-lock"></i> مكتملة</span></div>
+                        <div class="actions-cell">
+                            <button class="btn-report"><i class="fa-solid fa-chart-line"></i> تقرير الإحصاء</button>
+                            <button class="btn-icon"><i class="fa-solid fa-print"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <aside class="stats-card">
+                    <div class="stats-title">
+                        <i class="fa-solid fa-chart-pie"></i> إحصائيات
+                    </div>
+                    <div class="stats-number">42</div>
+                    <div class="stats-desc">مادة مؤرشفة<br>بالكامل</div>
+                    <i class="fa-solid fa-box-archive stats-bg-icon"></i>
+                </aside>
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>

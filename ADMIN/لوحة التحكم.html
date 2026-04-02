@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام كنترول الجامعة - لوحة التحكم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* الإعدادات الأساسية */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f9;
+            color: #333;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+  
+        /* القائمة الجانبية (Sidebar) */
+.sidebar {
+    background-color: #202c59;
+    color: white;
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar-header {
+    text-align: center;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-box {
+    width: 60px;
+    height: 60px;
+    background-color: #0c152e;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.logo-box i {
+    font-size: 2rem;
+    color: #fff;
+}
+
+.sidebar-header h2 {
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.sidebar-header p {
+    font-size: 0.8rem;
+    color: #8fa0c9;
+    margin-top: 5px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    flex-grow: 1;
+    margin-top: 20px;
+    padding: 0; /* Ensures no default padding on the ul */
+}
+
+.sidebar-menu li {
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+/* Target the link inside the list item for the clickable area */
+.sidebar-menu li a {
+    padding: 15px 25px;
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    color: #aebce0;
+    text-decoration: none; /* Removes the default link underline */
+}
+
+.sidebar-menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.sidebar-menu li.active a {
+    background-color: #7affaa;
+    color: #202c59;
+    font-weight: 700;
+}
+
+.user-profile {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #8aff9e;
+    color: #202c59;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+        /* المحتوى الرئيسي */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        /* الشريط العلوي */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            z-index: 10;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .topbar-title {
+            color: #202c59;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            background-color: #f0f2f5;
+            border: none;
+            padding: 10px 40px 10px 15px;
+            border-radius: 8px;
+            width: 300px;
+            outline: none;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        .topbar-icons {
+            display: flex;
+            gap: 15px;
+            color: #202c59;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* منطقة المحتوى */
+        .content-area {
+            padding: 40px;
+        }
+
+        .welcome-text {
+            margin-bottom: 30px;
+        }
+
+        .welcome-text h1 {
+            color: #0c1a4b;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .welcome-text p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* البطاقات العلوية */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-dark {
+            background-color: #0c1a4b;
+            color: white;
+            position: relative;
+        }
+
+        .live-badge {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            font-size: 0.9rem;
+            color: #8aff9e;
+        }
+
+        .completion-rate {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-top: 10px;
+        }
+
+        .main-progress-bg {
+            background-color: #22346b;
+            height: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .main-progress-fill {
+            background-color: #8aff9e;
+            height: 100%;
+            width: 0%; 
+            border-radius: 5px;
+            transition: width 1.5s ease-out;
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .stat-icon {
+            background-color: #e6f7ff;
+            color: #202c59;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .stat-value-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0c1a4b;
+        }
+
+        .badge-green {
+            background-color: #d1fae5;
+            color: #059669;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        /* قسم المستويات الأكاديمية */
+        .section-title {
+            color: #0c1a4b;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .level-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border: 2px solid transparent;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .level-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .level-card.active-level {
+            border-color: #10b981;
+        }
+
+        .level-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .level-tag {
+            background-color: #f0f2f5;
+            color: #202c59;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .level-card.active-level .level-tag {
+            background-color: #8aff9e;
+        }
+
+        .level-data {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #444;
+            font-weight: 500;
+        }
+
+        .level-data strong {
+            color: #0c1a4b;
+            font-size: 1.1rem;
+        }
+
+        .level-progress-title {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #10b981;
+            margin-top: 15px;
+            font-weight: 700;
+        }
+
+        .small-progress-bg {
+            background-color: #f0f2f5;
+            height: 6px;
+            border-radius: 3px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .small-progress-fill {
+            background-color: #10b981;
+            height: 100%;
+            width: 0%; 
+            transition: width 1.5s ease-out;
+        }
+
+        /* شريط سفلي بسيط */
+        .footer {
+            margin-top: auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eaeaea;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+         .system-branding {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #202c59;
+            font-weight: 700;
+        }
+
+    </style>
+</head>
+<body>
+
+   <aside class="sidebar">
+    <div>
+         <div class="sidebar-header">
+            <div class="logo-box">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z'/></svg>" alt="Logo" style="width: 35px;">
+            </div>
+            <h2>كنترول الجامعة</h2>
+            <p>لوحة الإدارة</p>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li class="active"><a href="#"><i class="fa-solid fa-border-all"></i> لوحة التحكم</a></li>
+            <li><a href="إدارة الأعضاء.html"><i class="fa-solid fa-users"></i> الأعضاء</a></li>
+            <li><a href="إدارة المواد الدراسية.html"><i class="fa-solid fa-book"></i> المواد الدراسية</a></li>
+            <li><a href="أرشيف المواد المكتملة.html"><i class="fa-solid fa-box-archive"></i> الأرشيف</a></li>
+            <li><a href="اعدادات النظام.html"><i class="fa-solid fa-gear"></i> الإعدادات</a></li>
+        </ul>
+    </div>
+
+    <div class="user-profile">
+        <div class="user-avatar"><i class="fa-regular fa-user"></i></div>
+        <div>
+            <div style="font-weight: 700;">أحمد المحمد</div>
+            <div style="font-size: 0.8rem; color: #aaa;">مدير النظام</div>
+        </div>
+    </div>
+</aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-title">نظام كنترول الجامعة</div>
+            <div class="topbar-right">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" class="search-input" placeholder="بحث في النظام...">
+                </div>
+                <div class="topbar-icons">
+                    <i class="fa-regular fa-bell"></i>
+                    <i class="fa-regular fa-circle-user"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-area">
+            
+            <div class="welcome-text">
+                <h1>مرحباً بك، المسؤول</h1>
+                <p>إليك تفاصيل أداء المستويات الأكاديمية والبيانات الحالية.</p>
+            </div>
+
+            <div class="stats-grid">
+                
+                <div class="card card-dark">
+                    <span class="live-badge">مباشر الآن</span>
+                    <div>
+                        <div style="font-size: 1.1rem; color: #ccc;">نسبة الإنجاز الكلية</div>
+                        <div class="completion-rate">88.4%</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; color: #aaa;">بناءً على نتائج كافة المستويات</div>
+                        <div class="main-progress-bg">
+                            <div class="main-progress-fill" data-target="88.4%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="stat-header">
+                        <span>إجمالي الأعضاء</span>
+                        <i class="fa-solid fa-users stat-icon"></i>
+                    </div>
+                    <div class="stat-value-container">
+                        <div class="stat-value">3,850</div>
+                        <span class="badge-green">+5%</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="stat-header">
+                        <span>إجمالي المواد</span>
+                        <i class="fa-solid fa-book-open stat-icon" style="background-color: #e6ffed; color:#10b981;"></i>
+                    </div>
+                    <div class="stat-value-container">
+                        <div class="stat-value">142</div>
+                        <span class="badge-green">+12%</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <h2 class="section-title">تحليل المستويات الأكاديمية</h2>
+            
+            <div class="levels-grid">
+                
+                <div class="level-card">
+                    <div class="level-header">
+                        <span class="level-tag">المستوى ١</span>
+                        <i class="fa-solid fa-graduation-cap" style="color: #202c59;"></i>
+                    </div>
+                    <div class="level-data">
+                        <span>عدد المواد</span>
+                        <strong>٣٦ مادة</strong>
+                    </div>
+                    <div class="level-data">
+                        <span>أعضاء الكنترول</span>
+                        <strong>٨ أعضاء</strong>
+                    </div>
+                    <div class="level-progress-title">
+                        <span>نسبة الإنجاز</span>
+                        <span>٧٥٪</span>
+                    </div>
+                    <div class="small-progress-bg">
+                        <div class="small-progress-fill" data-target="75%"></div>
+                    </div>
+                </div>
+
+                <div class="level-card active-level">
+                    <div class="level-header">
+                        <span class="level-tag">المستوى ٢</span>
+                        <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
+                    </div>
+                    <div class="level-data">
+                        <span>عدد المواد</span>
+                        <strong>٤٠ مادة</strong>
+                    </div>
+                    <div class="level-data">
+                        <span>أعضاء الكنترول</span>
+                        <strong>١٢ عضو</strong>
+                    </div>
+                    <div class="level-progress-title">
+                        <span>نسبة الإنجاز</span>
+                        <span>٩٢٪</span>
+                    </div>
+                    <div class="small-progress-bg">
+                        <div class="small-progress-fill" data-target="92%"></div>
+                    </div>
+                </div>
+
+                <div class="level-card">
+                    <div class="level-header">
+                        <span class="level-tag">المستوى ٣</span>
+                        <i class="fa-solid fa-gear" style="color: #202c59;"></i>
+                    </div>
+                    <div class="level-data">
+                        <span>عدد المواد</span>
+                        <strong>٣٤ مادة</strong>
+                    </div>
+                    <div class="level-data">
+                        <span>أعضاء الكنترول</span>
+                        <strong>٩ أعضاء</strong>
+                    </div>
+                    <div class="level-progress-title" style="color:#202c59;">
+                        <span>نسبة الإنجاز</span>
+                        <span>٦٤٪</span>
+                    </div>
+                    <div class="small-progress-bg">
+                        <div class="small-progress-fill" style="background-color:#202c59;" data-target="64%"></div>
+                    </div>
+                </div>
+
+                <div class="level-card">
+                    <div class="level-header">
+                        <span class="level-tag">المستوى ٤</span>
+                        <i class="fa-solid fa-award" style="color: #202c59;"></i>
+                    </div>
+                    <div class="level-data">
+                        <span>عدد المواد</span>
+                        <strong>٣٢ مادة</strong>
+                    </div>
+                    <div class="level-data">
+                        <span>أعضاء الكنترول</span>
+                        <strong>٧ أعضاء</strong>
+                    </div>
+                    <div class="level-progress-title">
+                        <span>نسبة الإنجاز</span>
+                        <span>٨٥٪</span>
+                    </div>
+                    <div class="small-progress-bg">
+                        <div class="small-progress-fill" data-target="85%"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+      
+<div class="footer">
+                <div class="system-branding">
+                    <i class="fa-solid fa-shield-halved"></i> نظام كنترول الجامعة
+                    <span style="color: #ccc; margin: 0 10px;">|</span>
+                    <span style="color: #888; font-weight: normal;">© جميع الحقوق محفوظة لجامعة كنترول</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">سياسة الخصوصية</a>
+                    <a href="#">الدعم الفني</a>
+                    <a href="#">اتصل بنا</a>
+                </div>
+            </div>
+
+    </main>
+
+    <script>
+        // 1. تفعيل الأنيميشن الخاص بأشرطة التقدم عند تحميل الصفحة
+        document.addEventListener("DOMContentLoaded", () => {
+            const progressBars = document.querySelectorAll('.main-progress-fill, .small-progress-fill');
+            
+            // تأخير بسيط لإعطاء تأثير بصري جميل عند فتح الصفحة
+            setTimeout(() => {
+                progressBars.forEach(bar => {
+                    const targetWidth = bar.getAttribute('data-target');
+                    bar.style.width = targetWidth;
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>

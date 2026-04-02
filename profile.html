@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <title>إعدادات العضو</title>
+    <link rel="stylesheet" href="profileStyle.css">
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header class="main-header">
+    <div class="user-info">
+        <span>د.أحمد علي </span>
+        <a href="profile.html">
+        <img src="images/user.webp" alt="User Avatar" class="avatar">
+        </a>
+    </div>
+
+    <div class="logo">MUST Control</div>
+
+    <nav>
+        <ul>
+            <li><i class="fas fa-home"></i><a href="main.html">الرئيسية</a></li>
+            <li><i class="fas fa-project-diagram"></i><a href="workflow.html">سير العمل</a></li>
+            <li><i class="fas fa-file-alt"></i><a href="index.html">ملف الأوراق</a></li>
+            <li><i class="fas fa-archive"></i><a href="#">الأرشيف</a></li>
+            <li class="active"><i class="fas fa-cog"></i><a href="profile.html">الإعدادات</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="page-title">
+    <h1>إعدادات الحساب</h1>
+    <p>إدارة معلوماتك الشخصية وتحديث إعدادات الأمان الخاصة بك</p>
+</div>
+
+    <!-- المحتوى -->
+    <main class="settings-container">
+        <!-- المعلومات الشخصية -->
+        <section class="card profile-card">
+           <h2><i class="fas fa-user"></i> الملف الشخصي</h2>
+            <div class="profile-row">
+              <img src="images/avatar.webp" alt="User Avatar" class="profile-pic">
+                  <div class="profile-fields">
+         <div class="row">
+                <div class="input-box">
+                    <label>الاسم الكامل</label>
+                    <input type="text" value="أحمد علي السيد">
+                </div>
+                <div class="input-box">
+                    <label>اللقب الأكاديمي</label>
+                    <input type="text" value=" دكتور">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-box full">
+                    <label>البريد الجامعي</label>
+                    <input type="email" value="a.alh@must.edu.eg">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- الأمان -->
+        <section class="card">
+              <h2><i class="fas fa-lock"></i> الأمان</h2>
+
+            <div class="row">
+    <div class="input-box full">
+        <label><i class="fas fa-key"></i> كلمة المرور الحالية</label>
+
+        <input type="password">
+    </div>
+</div>
+
+<div class="row">
+    <div class="input-box">
+         <label><i class="fas fa-lock-open"></i> كلمة المرور الجديدة</label>
+
+        <input type="password">
+    </div>
+    <div class="input-box">
+       <label><i class="fas fa-check"></i> تأكيد كلمة المرور الجديدة</label>
+
+        <input type="password">
+    </div>
+</div>
+            <div class="note-box">
+                <div class="note-icon">!</div>
+                <div class="note-text">
+                   تأكد من اختيار كلمة مرور قوية تحتوي على 8 أحرف على الأقل، تشمل أرقاماً ورموزاً لضمان حماية صلاحياتك الإدارية.
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <div class="actions">
+   <button class="save"><i class="fas fa-save"></i> حفظ التغييرات</button>
+
+
+    <button class="cancel">إلغاء التعديلات</button>
+</div>
+
+    <!-- الفوتر -->
+  <footer>
+    <div class="footer-cols">
+        <div>
+            <h3>ABOUT UNIVERSITY</h3>
+            <p>About MUST</p>
+            <p>History</p>
+            <p>Accreditation And Partnership</p>
+            <p>Why MUST</p>
+            <p>Values & Principles</p>
+            <p>Contact Us</p>
+            <p>Privacy Policy</p>
+        </div>
+
+        <div>
+            <h3>MUST BUZZ</h3>
+            <p>MUST Events</p>
+            <p>MUST News</p>
+            <p>Blog</p>
+            <p>Announcement</p>
+        </div>
+
+        <div>
+            <h3>QUICK LINKS</h3>
+            <p>The University</p>
+            <p>Academics</p>
+            <p>Life At MUST</p>
+            <p>Research & Centres</p>
+            <p>Maps & Directions</p>
+            <p>FAQs</p>
+        </div>
+
+        <div>
+            <h3>CONTACT INFO</h3>
+            <p><strong>HOTLINE</strong> 16878</p>
+            <p><strong>EMAIL</strong> Info@Must.Edu.Eg</p>
+            <p><strong>ADDRESS</strong> Al Motamayez District – 6th of October, Egypt</p>
+        </div>
+    </div>
+
+    <div class="copyright">
+        COPYRIGHT ALL RIGHT RESERVED © MUST UNIVERSITY 2026
+    </div>
+</footer>
+
+</body>
+</html>
